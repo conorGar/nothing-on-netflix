@@ -1,0 +1,65 @@
+
+.frontImg{
+    position: relative;
+    margin: auto;
+    max-height: 1000px;
+    max-width: 1350px;
+    background-color: red;
+    height: 500px;
+
+}
+
+
+.headerImg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-height: 1000px;
+    max-width: 1350px;
+    left: 400px;
+    animation: cf4FadeInOut 12s ease-in-out;
+    -webkit-animation: cf4FadeInOut 16s ease-in-out;
+    
+    animation-iteration-count: infinite;
+}
+
+#headerImage1{
+    animation-delay: 12s;
+
+}
+#headerImage2{
+    animation-delay: 8s;
+
+}
+#headerImage3{
+    animation-delay: 4s;
+
+}
+#headerImage4{
+    animation-delay: 0s;
+
+}
+#headerImageFront{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+
+}
+@keyframes cf4FadeInOut {
+    0% {
+      opacity:1;
+    }
+    17% {
+      opacity:1;
+    }
+    25% {
+      opacity:0;
+    }
+    92% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
