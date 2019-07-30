@@ -28,7 +28,7 @@ class SearchOptions extends React.Component{
     render(){
         return(
             <div className="searchContainer">
-                <h1>I'm looking for a movie...</h1>
+                <h2>I'm looking for a movie...</h2>
                     <div className="form-container">
                         {/* <div className="search-box"> */}
                         <select value={this.state.operation} onChange={this.onGenreFilterChange} className="search-box">
@@ -44,7 +44,7 @@ class SearchOptions extends React.Component{
                         {/* <input type="text" className="search-box" placeholder="with a lot of.."value={this.props.value}   onChange={this.props.onChange} name="genre-filter"></input> */}
                         {/* <input type="text" className="search-box" placeholder="that came out.."value="" name="date-filter"></input> */}
                         {/* <input type="text" className="search-box" placeholder="with scores that are at least..."value="" name="rating-filter"></input> */}
-                        <select value={this.state.operation}  onChange={this.onDateFilterChange} className="search-box">
+                        <select value={this.state.operation}  onChange={this.onDateFilterChange} className="search-box" placeholder="....">
                             <option value="add">that came out...</option>
                             <option value="2010">VERY Recently.</option>
                             <option value="2000">Pretty recently.</option>
@@ -64,7 +64,15 @@ class SearchOptions extends React.Component{
                         </select>
 
                     </div>
-                    <div className="search-button" onClick={this.props.searchHandler}>MAKE MY DECISIONS FOR ME! -></div>
+                    <div className="search-button" onClick={this.props.searchHandler}>
+                        <h1>
+                            <span>F</span>
+                            <span>I</span>
+                            <span>N</span>
+                            <span>D</span>
+                            <span>!</span>
+                        </h1>
+                    </div>
 
             </div>
         )

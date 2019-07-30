@@ -1,0 +1,17 @@
+
+
+.app-container{
+  display: flex;
+  flex-direction: column;
+  /* background-color: black; */
+}
+
+.app-top{
+  display:flex;
+  flex-direction: row;
+  height: 500px;
+
+}
+
+
+
