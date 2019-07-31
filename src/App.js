@@ -1,9 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import FrontPage from './components/FrontPage';
-import SearchOptions from './components/SearchOptions';
-import RecommendList from './components/RecommendList/RecommendList';
+import {Router, Route, Link } from 'react-router-dom';
 
+import logo from './logo.svg';
+import Home from './components/home/Home';
+import RecommendList from './components/RecommendList/RecommendList';
+import InfoPage from './components/InfoPage/InfoPage'
 
 import Axios from 'axios';
 
@@ -17,8 +18,11 @@ class App extends React.Component {
         dateFilter: '',
         ratingFilter: '',
         dateEndFilter: '',
-        recommendations: []
-    
+        recommendations: [],
+        displayedTitle: '',
+        displayedRating: '',
+        displayedSynopsis: '',
+        displayedImage: ''
     }
     this.genreArrarys = {
       horror: [10695,10944,1694,42023,45028,48303,61546,75405,75804,75930,8195,83059,8711,89585],
@@ -29,7 +33,8 @@ class App extends React.Component {
     this.testMovie = {
       image: "https://occ-0-2433-2705.1.nflxso.net/dnm/api/v6/XsrytRUxks8BtTRf9HNlZkW2tvY/AAAABeThSRoSA1795AhEnR15YSEJ3ZFqGbCqR1OQAt7j1778VdZe0nGL-yOxoAGL8AhAcgpsgwcV299ua19rwl-oZq3OPnBwWV4.jpg?r=a85",
       synopsis:"A soldier returns home from the Iraq War without his friend since training, launching an intense investigation into the mysterious disappearance.",
-      title:"The Yellow Birds"
+      title:"The Yellow Birds",
+      rating:6
     }
 
   }
@@ -106,19 +111,28 @@ class App extends React.Component {
 
   }
 
+
+  handleDisplayedInfo(title,rating,synopsis,image){
+    this.setState({
+      displayedTitle: title,
+      handleInfoDisplayFunction: rating,
+      displayedSynopsis: synopsis,
+      displayedImage: image
+    });
+  }
+
   render(){
     return (
       <div className="app-container">
-        
-        <div className="app-top">
-        <FrontPage />
-
-        <SearchOptions genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>
-        
-        </div>
+        <Route render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>)} />
        
 
-        <RecommendList recommendedMovies = {this.state.recommendations}/>
+       <Route path='/info' render={() => (<InfoPage title={this.state.displayedTitle} rating={this.state.displayedRating} synopsis={this.state.displayedSynopsis} image={this.state.image}/>)}/>
+       {/* <div className = 'info-page-container'>
+            
+       </div> */}
+
+        <RecommendList recommendedMovies = {this.state.recommendations} handleInfoDisplayFunction={this.handleDisplayedInfo}/>
       </div>
     );
   }

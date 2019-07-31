@@ -28,7 +28,7 @@ function FrontPage(props){
             <div className= "text">
             <p>For us indecisive folks who need computers to tell us what we want.</p>
             </div>
-            {/* <SearchOptions /> */}
+           
 
 
         </div>

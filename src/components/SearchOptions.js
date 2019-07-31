@@ -1,5 +1,6 @@
 import React from 'react';
 import './SearchOptions.css';
+import {Router, Route, Link } from 'react-router-dom';
 
 class SearchOptions extends React.Component{
     constructor(props){
@@ -64,7 +65,8 @@ class SearchOptions extends React.Component{
                         </select>
 
                     </div>
-                    <div className="search-button" onClick={this.props.searchHandler}>
+                    <Link to="/info" className="search-button">SEARCH!</Link>
+                    {/* <div className="search-button" onClick={this.props.searchHandler}>
                         <h1>
                             <span>F</span>
                             <span>I</span>
@@ -72,7 +74,9 @@ class SearchOptions extends React.Component{
                             <span>D</span>
                             <span>!</span>
                         </h1>
-                    </div>
+
+                       
+                    </div> */}
 
             </div>
         )

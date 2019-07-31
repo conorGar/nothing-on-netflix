@@ -7,6 +7,12 @@ class RecommendList extends React.Component{
         super(props);
 
         this.state = {};
+     
+    }
+
+    
+    handleMovieClick(title,rating,synopsis,image){
+        this.props.handleInfoDisplayFunction(title,rating,synopsis,image);
     }
 
 
@@ -15,7 +21,11 @@ class RecommendList extends React.Component{
             <Movie 
             key = {index}
             movieImg = {movie.image}
-            
+            handleClickFunction = {this.handleMovieClick}
+            movTitle= {movie.title}
+            movRate= {movie.rating}
+            movSynopsis= {movie.synopsis}
+
             />
             
             )
@@ -23,7 +33,7 @@ class RecommendList extends React.Component{
         return(
             <div className= "recommendation-container"> 
                  <Movie />
-                {movies}
+                {this.movies}
             </div>
         )
     }
