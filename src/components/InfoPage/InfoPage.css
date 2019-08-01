@@ -32,6 +32,24 @@ h3{
     /* margin-left: 400px; */
     margin-top: 50px;
 }
+.rating-container{
+    /* background-color:saddlebrown; */
+    z-index: 99;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+
+.imdb-logo{
+    z-index: 99;
+    width:50px;
+    height: 25px;
+    background-color: blueviolet;
+    margin-right: 30px;
+    /* position: absolute; */
+}
 
 
 #headerImageFront{
@@ -60,17 +78,23 @@ p{
     margin-left: 10%;
 }
 
-.headerImg{
+.bigImg{
     position: absolute;
 
     z-index:-1;
     max-height: 1000px;
-    max-width: 1350px;
+    max-width: 750px;
 
-    min-width: 1000px;
-
+    min-width: 600px;
+    margin-left: 400px;
     
     animation-iteration-count: infinite;
+  }
+
+  #backButtonImg{
+      position: absolute;
+      width: 100px;
+      height: 50px;
   }
 
   

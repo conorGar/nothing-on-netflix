@@ -26,6 +26,8 @@ class SearchOptions extends React.Component{
         console.log(newValue)
     }
 
+
+
     render(){
         return(
             <div className="searchContainer">
@@ -65,8 +67,8 @@ class SearchOptions extends React.Component{
                         </select>
 
                     </div>
-                    <Link to="/info" className="search-button">SEARCH!</Link>
-                    {/* <div className="search-button" onClick={this.props.searchHandler}>
+                    {/* <Link to="/info" className="search-button" onClick={this.props.searchHandler} >SEARCH!</Link> */}
+                    <div className="search-button" onClick={this.props.searchHandler}>
                         <h1>
                             <span>F</span>
                             <span>I</span>
@@ -76,7 +78,7 @@ class SearchOptions extends React.Component{
                         </h1>
 
                        
-                    </div> */}
+                    </div>
 
             </div>
         )

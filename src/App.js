@@ -104,41 +104,51 @@ class App extends React.Component {
 
   search = async(e) => {
     e.preventDefault();
-    
+    console.log("Search APP activate");
     this.setState(prevState => ({
-          recommendations: [this.testMovie]
+          recommendations: [this.testMovie, this.testMovie]
     }));
 
   }
 
 
-  handleDisplayedInfo(title,rating,synopsis,image){
+  handleDisplayedInfo = (title,rating,synopsis,image) =>{
     this.setState({
       displayedTitle: title,
-      handleInfoDisplayFunction: rating,
+      displayedRating: rating,
       displayedSynopsis: synopsis,
       displayedImage: image
     });
   }
 
   render(){
+    let infoPage = false;
+    let reditectHolder;
+    if(this.state.recommendations.length > 0){
+      infoPage = true;
+      console.log(this.state.recommendations);
+      reditectHolder = <Redirect to="/info"/>
+    }
     return (
 
       <div className="app-container">
 
       <Route exact path="/" render={() => (
         <Redirect to="/home"/>
-    )}/>
-    
-        <Route path='/home' render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>)} />
-       
+      )}/>
 
-       <Route path='/info' render={() => (<InfoPage title={this.state.displayedTitle} rating={this.state.displayedRating} synopsis={this.state.displayedSynopsis} image={this.state.image}/>)}/>
+        {reditectHolder}
+
+        <Route path='/home' render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>)} />
+
+
+       <Route path='/info' render={() => (<InfoPage title={this.state.displayedTitle} rating={this.state.displayedRating} synopsis={this.state.displayedSynopsis} image={this.state.displayedImage}/>)}/>
        {/* <div className = 'info-page-container'>
             
        </div> */}
+        <RecommendList recommendedMovies = {[this.testMovie, this.testMovie]} handleInfoDisplayFunction={this.handleDisplayedInfo}/>
 
-        <RecommendList recommendedMovies = {this.state.recommendations} handleInfoDisplayFunction={this.handleDisplayedInfo}/>
+      {/* <Route path='/home' render={(routeProps) => (<RecommendList {...routeProps} recommendedMovies = {this.state.recommendations} handleInfoDisplayFunction={this.handleDisplayedInfo}/>)}/> */}
       </div>
     );
   }

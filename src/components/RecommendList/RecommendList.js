@@ -11,13 +11,15 @@ class RecommendList extends React.Component{
     }
 
     
-    handleMovieClick(title,rating,synopsis,image){
+    handleMovieClick = (title,rating,synopsis,image) =>{
         this.props.handleInfoDisplayFunction(title,rating,synopsis,image);
     }
 
 
-    render(){
+    render =() =>{
+        console.log("PASSED MOVIES:" + this.props.recommendedMovies);
         const movies = this.props.recommendedMovies.map((movie,index) =>
+            
             <Movie 
             key = {index}
             movieImg = {movie.image}
@@ -30,10 +32,12 @@ class RecommendList extends React.Component{
             
             )
 
+            console.log(movies);
+
         return(
             <div className= "recommendation-container"> 
                  <Movie />
-                {this.movies}
+                {movies}
             </div>
         )
     }
