@@ -67,50 +67,55 @@ class App extends React.Component {
 
   }
 
-  // search = async(e) => {
-  //   e.preventDefault();
-    
-  //   console.log("Search activated");
-  //   const REACT_APP_API_KEY = ' ';
-
-  //   try{
-  //     const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get:new7-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},10-!${this.state.genreFilter}-!Any-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=all&st=adv&ob=Relevance&p=1&sa=and`;
-
-         
-  //     // const apiResponse = await Axios.get(apiUrl)
-  //     // .header("X-RAPIDAPI-KEY", REACT_APP_API_KEY); 
-      
-  //     const apiResponse = await Axios({
-  //       url: apiUrl,
-  //       method: 'GET',
-  //       headers: {"X-RapidAPI-Key": REACT_APP_API_KEY,
-  //                 "X-RapidAPI-Host":"unogs-unogs-v1.p.rapidapi.com"}
-  //     })
-
-  //     const movieData = apiResponse.data;
-  //     console.log(apiResponse);
-  //     console.log(movieData.ITEMS);
-
-  //     if(apiResponse.status === 200){
-  //       this.setState(prevState => ({
-  //         recommendations: movieData.ITEMS
-  //       }));
-  //     } 
-  //   }catch{
-
-  //   }
-
-  // }
-
   search = async(e) => {
     e.preventDefault();
-    console.log("Search APP activate");
-    this.setState(prevState => ({
-          recommendations: [this.testMovie, this.testMovie]
-    }));
+    
+    console.log("Search activated");
+    const REACT_APP_API_KEY =  process.env.REACT_APP_API_TOKEN;
+
+    try{
+      const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get:new7-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},10-!${this.state.genreFilter}-!Any-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=all&st=adv&ob=Relevance&p=1&sa=and`;
+
+         
+      // const apiResponse = await Axios.get(apiUrl)
+      // .header("X-RAPIDAPI-KEY", REACT_APP_API_KEY); 
+      
+      const apiResponse = await Axios({
+        url: apiUrl,
+        method: 'GET',
+        headers: {"X-RapidAPI-Key": REACT_APP_API_KEY,
+                  "X-RapidAPI-Host":"unogs-unogs-v1.p.rapidapi.com"}
+      })
+
+      const movieData = apiResponse.data;
+      console.log(apiResponse);
+      console.log(movieData.ITEMS);
+
+      if(apiResponse.status === 200){
+        this.setState(prevState => ({
+          recommendations: movieData.ITEMS
+        }));
+      } 
+    }catch{
+
+    }
 
   }
 
+  // search = async(e) => {
+  //   e.preventDefault();
+  //   console.log("Search APP activate");
+  //   this.setState(prevState => ({
+  //         recommendations: [this.testMovie, this.testMovie]
+  //   }));
+
+  // }
+
+  handleClearList = () =>{
+    this.setState({
+      recommendations: []
+    });
+  }
 
   handleDisplayedInfo = (title,rating,synopsis,image) =>{
     this.setState({
@@ -120,6 +125,8 @@ class App extends React.Component {
       displayedImage: image
     });
   }
+
+
 
   render(){
     let infoPage = false;
@@ -142,11 +149,11 @@ class App extends React.Component {
         <Route path='/home' render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>)} />
 
 
-       <Route path='/info' render={() => (<InfoPage title={this.state.displayedTitle} rating={this.state.displayedRating} synopsis={this.state.displayedSynopsis} image={this.state.displayedImage}/>)}/>
+       <Route path='/info' render={() => (<InfoPage title={this.state.displayedTitle} rating={this.state.displayedRating} synopsis={this.state.displayedSynopsis} image={this.state.displayedImage} clearList = {this.handleClearList}/>)}/>
        {/* <div className = 'info-page-container'>
             
        </div> */}
-        <RecommendList recommendedMovies = {[this.testMovie, this.testMovie]} handleInfoDisplayFunction={this.handleDisplayedInfo}/>
+        <RecommendList recommendedMovies = {this.state.recommendations} handleInfoDisplayFunction={this.handleDisplayedInfo}/>
 
       {/* <Route path='/home' render={(routeProps) => (<RecommendList {...routeProps} recommendedMovies = {this.state.recommendations} handleInfoDisplayFunction={this.handleDisplayedInfo}/>)}/> */}
       </div>

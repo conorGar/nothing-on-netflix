@@ -12,7 +12,7 @@ function InfoPage(props){
     return(
         <div className ="info-container">
             {/* <Info /> */}
-            <Link to="/home" className="back-button" onClick={props.searchHandler} >
+            <Link to="/home" className="back-button" onClick={props.clearList} >
             <img alt="" id="backButtonImg" src={siteLogo}/>
 
             </Link>
@@ -29,7 +29,7 @@ function InfoPage(props){
                 <h3>{props.rating}</h3>
                 <h3>/ 10</h3>
                 </div>
-                <p>{props.synopsis}</p>
+                <p className="synopsis">{props.synopsis}</p>
             </div>
 
         </div>

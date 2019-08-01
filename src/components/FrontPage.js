@@ -23,7 +23,7 @@ function FrontPage(props){
                      <img className="headerImg" alt="" id="headerImage3" src={BasterdsIMG}/>
                      <img className="headerImg" alt="" id="headerImage4" src={JokerIMG}/>
                  </div>
-            <img alt="" id="headerImageFront" src={FrontIMG}/>
+            <img alt="" id="headerImageFront2" src={FrontIMG}/>
             <img alt="" id="title" src={SiteTitle}/>
             <div className= "text">
             <p>For us indecisive folks who need computers to tell us what we want.</p>
