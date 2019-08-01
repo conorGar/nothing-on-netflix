@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, Link } from 'react-router-dom';
+import {Router, Redirect, Route, Link } from 'react-router-dom';
 
 import logo from './logo.svg';
 import Home from './components/home/Home';
@@ -123,8 +123,14 @@ class App extends React.Component {
 
   render(){
     return (
+
       <div className="app-container">
-        <Route render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>)} />
+
+      <Route exact path="/" render={() => (
+        <Redirect to="/home"/>
+    )}/>
+    
+        <Route path='/home' render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>)} />
        
 
        <Route path='/info' render={() => (<InfoPage title={this.state.displayedTitle} rating={this.state.displayedRating} synopsis={this.state.displayedSynopsis} image={this.state.image}/>)}/>
