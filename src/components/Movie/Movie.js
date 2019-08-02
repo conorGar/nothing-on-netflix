@@ -15,7 +15,7 @@ class Movie extends React.Component{
 
     render(){
         return(
-            <div className="movie-container" onClick={this.clickMovie}>
+            <div className="movie-container" onMouseEnter={this.clickMovie}>
                 <img src= {this.props.movieImg} alt=""/>
             </div>
         )

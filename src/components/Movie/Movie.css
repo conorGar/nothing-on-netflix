@@ -1,6 +1,7 @@
 
 
 .movie-container{
+    display: block;
     width: 300px;
     height: 150px;
     background-color: grey;
@@ -9,6 +10,19 @@
     border-style: solid;
     -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
             animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+}
+
+.movie-container:hover{
+  /* width: 350px;
+  height: 250px; */
+  border-width: 7px;
+  top:-30px;
+  border-color: white;
+  /* transform: scale(1.5);
+  -webkit-transform: scale(1.5); */
+
 }
 
 img{

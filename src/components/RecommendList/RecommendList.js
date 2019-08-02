@@ -34,7 +34,7 @@ class RecommendList extends React.Component{
             )
 
             console.log(movies);
-
+        // this.handleMovieClick(movies[0].title, movies[0].movRate, movies[0].synopsis, movies)
         return(
             <div className= "recommendation-container"> 
                 {movies}
