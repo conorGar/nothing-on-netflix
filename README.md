@@ -12,6 +12,7 @@ Fill out some forms telling the tool the general idea of the kind of movie you m
 ## Technologies
 -React Router
 -React
+-Flexbox
 
 
 ## MVP
