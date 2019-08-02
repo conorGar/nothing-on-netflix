@@ -8,7 +8,8 @@ class Movie extends React.Component{
         super(props);
     }
 
-    clickMovie = () =>{
+    clickMovie = (e) =>{
+        console.log(e);
         this.props.handleClickFunction(this.props.movTitle, this.props.movRate, this.props.movSynopsis, this.props.movieImg);
     }
 

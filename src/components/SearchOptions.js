@@ -36,12 +36,13 @@ class SearchOptions extends React.Component{
                         {/* <div className="search-box"> */}
                         <select value={this.state.operation} onChange={this.onGenreFilterChange} className="search-box">
                             <option value="add">with lots of...</option>
-                            <option value="horror">SPOOKY SCARY THINGS</option>
-                            <option value="action">HEART-PUMPING ACTION</option>
-                            <option value="adventure">ADVENTURE</option>
-                            <option value="romance">WHOLESOME ROMANCE</option>
-                            <option value="romance2">LESS-WHOLESOME ROMANCE</option>
-                            <option value="comedy">GREAT GOOFS</option>
+                            <option value="horror">Spooky Things</option>
+                            <option value="action">Heart-Pumping Action</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="romance">Romance</option>
+                            <option value="thriller">Suspense and Thrills</option>
+                            <option value="comedy">Great Goofs</option>
+                            <option value="drama">Drama</option>
                         </select>
                         {/* </div> */}
                         {/* <input type="text" className="search-box" placeholder="with a lot of.."value={this.props.value}   onChange={this.props.onChange} name="genre-filter"></input> */}
@@ -58,10 +59,10 @@ class SearchOptions extends React.Component{
 
                         <select value={this.state.operation}  onChange={this.onRateFilterChange} className="search-box">
                             <option value="add">considered to be...</option>
-                            <option value="4.3">Among the greatest movies ever made.</option>
-                            <option value="4">Pretty good.</option>
-                            <option value="3">Watchable.</option>
-                            <option value="2">So bad it's good.</option>
+                            <option value="8.3">Among the greatest movies ever made.</option>
+                            <option value="8">Pretty good.</option>
+                            <option value="6">I'll settle for watchable.</option>
+                            <option value="4">So bad it's good.</option>
                             <option value="1">So bad it's actually just bad.</option>
                             <option value="0">It doesn't matter</option>
                         </select>

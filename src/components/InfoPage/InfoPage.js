@@ -25,9 +25,9 @@ function InfoPage(props){
             <div className= "text">
                 <h1>{props.title}</h1>
                 <div className="rating-container">
-                <img src={imdbLogo} alt="" className="imdb-logo" />
-                <h3>{props.rating}</h3>
-                <h3>/ 10</h3>
+                    <img src={imdbLogo} alt="" className="imdb-logo" />
+                    <h3>{props.rating}</h3>
+                    <h3>/ 10</h3>
                 </div>
                 <p className="synopsis">{props.synopsis}</p>
             </div>

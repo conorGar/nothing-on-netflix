@@ -18,6 +18,7 @@ class RecommendList extends React.Component{
 
     render =() =>{
         console.log("PASSED MOVIES:" + this.props.recommendedMovies);
+       
         const movies = this.props.recommendedMovies.map((movie,index) =>
             
             <Movie 
@@ -36,7 +37,6 @@ class RecommendList extends React.Component{
 
         return(
             <div className= "recommendation-container"> 
-                 <Movie />
                 {movies}
             </div>
         )

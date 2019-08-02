@@ -27,7 +27,11 @@ class App extends React.Component {
     this.genreArrarys = {
       horror: [10695,10944,1694,42023,45028,48303,61546,75405,75804,75930,8195,83059,8711,89585],
       action: [10673,10702,11804,11828,1192487,1365,1568,2125,2653,43040,43048,4344,46576,75418,76501,77232,788212,801362,852490,899,9584],
-      comedy: [1009,10256,10375,105,10778,11559,11755,1208951,1333288,1402,1747,17648,2030,2700,31694,3300,34157,3519,3996,4058,4195,43040,4426,4906,52104,52140,52847,5286,5475,5610,56174,58905,59169,61132,61330,6197,63092,63115,6548,711366,7120,72407,7539,77599,77907,78163,78655,79871,7992,852492,869,89585,9302,9434,9702,9736]
+      comedy: [1009,10256,10375,105,10778,11559,11755,1208951,1333288,1402,1747,17648,2030,2700,31694,3300,34157,3519,3996,4058,4195,43040,4426,4906,52104,52140,52847,5286,5475,5610,56174,58905,59169,61132,61330,6197,63092,63115,6548,711366,7120,72407,7539,77599,77907,78163,78655,79871,7992,852492,869,89585,9302,9434,9702,9736],
+      adventure: [1365],
+      romance: [29281,36103,502673],
+      drama: [11,11075,11714,1208954,1255,12994,13158, 2150, 25955, 26009, 2696, 2748, 2757, 2893, 29809, 3179, 31902,34204, 3653,3682, 384, 3916, 3947, 4282,4425,452,4961, 500, 5012, 52148, 52904,56169, 5763, 58677, 58755, 58796, 59064, 6206, 62235, 6616, 6763, 68699, 6889, 711367, 71591, 72354, 7243, 7539, 75459, 76507, 78628, 852493, 89804, 9299, 9847, 9873],
+      thriller: [10306,10499,10504,10719,11014,11140,1138506, 1321,1774, 3269, 43048,46588,5505,58798, 65558, 6867, 75390, 78507, 799, 852488, 8933, 89811, 9147, 972]
     }
 
     this.testMovie = {
@@ -49,8 +53,12 @@ class App extends React.Component {
   changeDateFilter = (newFilter) =>{
     let newEndDateFilter = '2019';
 
-    if(parseInt(newFilter)+20 < 2019){
+
+    if(newFilter==="1900"){
+      newEndDateFilter = '2019';
+    }else if(parseInt(newFilter)+20 < 2019){
       newEndDateFilter = parseInt(newFilter) + 20
+
     }
 
     this.setState({
@@ -74,9 +82,10 @@ class App extends React.Component {
     const REACT_APP_API_KEY =  process.env.REACT_APP_API_TOKEN;
 
     try{
-      const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get:new7-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},10-!${this.state.genreFilter}-!Any-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=all&st=adv&ob=Relevance&p=1&sa=and`;
+      const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},10-!${this.state.genreFilter}-!Any-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=all&st=adv&ob=Relevance&p=1&sa=and`;
 
-         
+      
+      console.log( "API url: " + apiUrl);
       // const apiResponse = await Axios.get(apiUrl)
       // .header("X-RAPIDAPI-KEY", REACT_APP_API_KEY); 
       
@@ -91,9 +100,19 @@ class App extends React.Component {
       console.log(apiResponse);
       console.log(movieData.ITEMS);
 
+
       if(apiResponse.status === 200){
+        let randomMovies = [];
+        if(movieData.ITEMS.length > 4){
+            for(let i = 0; i < 4; i++){
+                let mov = movieData.ITEMS[Math.floor(Math.random()*movieData.ITEMS.length)];
+                randomMovies.push(mov);
+            }
+        }else{
+            randomMovies = movieData.ITEMS;
+        }
         this.setState(prevState => ({
-          recommendations: movieData.ITEMS
+          recommendations: randomMovies
         }));
       } 
     }catch{
