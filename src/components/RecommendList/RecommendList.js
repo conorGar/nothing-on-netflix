@@ -6,20 +6,34 @@ class RecommendList extends React.Component{
     constructor(props){
         super(props);
 
-        this.state = {};
-     
+        this.state = {
+            loaded: false
+        };
+        const movies = [];
     }
 
     
     handleMovieClick = (title,rating,synopsis,image) =>{
+        console.log("Handle movie click in listJS" + title + rating)
+        if(title){ //prevents passing 'undefined' values
         this.props.handleInfoDisplayFunction(title,rating,synopsis,image);
+        }
+    }
+
+    componentDidUpdate = () =>{
+        if(this.movies[0] && this.state.loaded === false){
+        this.handleMovieClick(this.movies[0].title, this.movies[0].movRate, this.movies[0].synopsis, this.movies);
+        this.setState({
+            loaded: true
+        })
+        }
     }
 
 
     render =() =>{
         console.log("PASSED MOVIES:" + this.props.recommendedMovies);
        
-        const movies = this.props.recommendedMovies.map((movie,index) =>
+        this.movies = this.props.recommendedMovies.map((movie,index) =>
             
             <Movie 
             key = {index}
@@ -33,11 +47,14 @@ class RecommendList extends React.Component{
             
             )
 
-            console.log(movies);
-        // this.handleMovieClick(movies[0].title, movies[0].movRate, movies[0].synopsis, movies)
+            // console.log(movies);
+       
         return(
             <div className= "recommendation-container"> 
-                {movies}
+            <h3>You should Watch:</h3>
+                <div className= 'movie-list-container'>
+                {this.movies}
+                </div>
             </div>
         )
     }

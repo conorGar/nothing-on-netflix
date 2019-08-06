@@ -8,6 +8,12 @@ class Movie extends React.Component{
         super(props);
     }
 
+    componentDidMount(){
+        console.log("Movie mounted!" + this.props.movTitle);
+        this.props.handleClickFunction(this.props.movTitle, this.props.movRate, this.props.movSynopsis, this.props.movieImg);
+
+    }
+
     clickMovie = (e) =>{
         console.log(e);
         this.props.handleClickFunction(this.props.movTitle, this.props.movRate, this.props.movSynopsis, this.props.movieImg);

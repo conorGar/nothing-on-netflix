@@ -69,16 +69,14 @@ class SearchOptions extends React.Component{
 
                     </div>
                     {/* <Link to="/info" className="search-button" onClick={this.props.searchHandler} >SEARCH!</Link> */}
-                    <div className="search-button" onClick={this.props.searchHandler}>
-                        <h1>
-                            <span>F</span>
-                            <span>I</span>
-                            <span>N</span>
-                            <span>D</span>
-                            <span>!</span>
-                        </h1>
-
-                       
+                    <div className="button-container">
+                    
+                        <div className="search-button" onClick={this.props.searchHandler}>
+                            <p className="find-movies-text">Find Movies</p>
+                        </div>
+                        <div className="search-button2" onClick={this.props.searchHandler}>
+                            <p className="find-movies-text">Find Shows</p>
+                        </div>
                     </div>
 
             </div>

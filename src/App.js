@@ -18,6 +18,8 @@ class App extends React.Component {
         dateFilter: '',
         ratingFilter: '',
         dateEndFilter: '',
+        ratingEndFilter: '10',
+        typeFilter: 'Movie',
         recommendations: [],
         displayedTitle: '',
         displayedRating: '',
@@ -37,7 +39,7 @@ class App extends React.Component {
     this.testMovie = {
       image: "https://occ-0-2433-2705.1.nflxso.net/dnm/api/v6/XsrytRUxks8BtTRf9HNlZkW2tvY/AAAABeThSRoSA1795AhEnR15YSEJ3ZFqGbCqR1OQAt7j1778VdZe0nGL-yOxoAGL8AhAcgpsgwcV299ua19rwl-oZq3OPnBwWV4.jpg?r=a85",
       synopsis:"A soldier returns home from the Iraq War without his friend since training, launching an intense investigation into the mysterious disappearance.",
-      title:"The Yellow Birds",
+      title:"The Yellow Birds Yellow Birds Yellow Birds",
       rating:6
     }
 
@@ -69,10 +71,29 @@ class App extends React.Component {
   }
 
   changeRateFilter = (newFilter) =>{
+    let rateEnd = 10;
+    if(newFilter < 5){
+      rateEnd = parseInt(newFilter) +2;
+    }else{
+      rateEnd = 10;
+    }
     this.setState({
-      ratingFilter: newFilter
+      ratingFilter: newFilter,
+      ratingEndFilter: rateEnd
     });
 
+  }
+
+  scrambleArray = (array) =>{
+    let j,x,i;
+    for(i = array.length; i > 0; i--){
+      j = Math.floor(Math.random()* (i + 1));
+      x= array[i];
+      array[i] = array[j];
+      array[j] = x;
+    }
+
+    return array;
   }
 
   search = async(e) => {
@@ -81,8 +102,9 @@ class App extends React.Component {
     console.log("Search activated");
     const REACT_APP_API_KEY =  process.env.REACT_APP_API_TOKEN;
 
-    try{
-      const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},10-!${this.state.genreFilter}-!Any-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=78&st=adv&ob=Relevance&p=1&sa=and`;
+    try{                                                                                  
+  //  const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},${this.state.ratingEndFilter}-!0,10-!${this.state.genreFilter}-!${this.state.typeFilter}-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=78&st=adv&ob=Relevance&p=1&sa=and`;
+   const apiUrl =  `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},10-!${this.state.genreFilter}-!Any-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=78&st=adv&ob=Relevance&p=1&sa=and`;
 
       
       console.log( "API url: " + apiUrl);
@@ -104,13 +126,16 @@ class App extends React.Component {
       if(apiResponse.status === 200){
         let randomMovies = [];
         if(movieData.ITEMS.length > 4){
+          let scrambledArray = this.scrambleArray(movieData.ITEMS);
+          console.log("scrambled array:" + scrambledArray);
             for(let i = 0; i < 4; i++){
-                let mov = movieData.ITEMS[Math.floor(Math.random()*movieData.ITEMS.length)];
-                randomMovies.push(mov);
+                // let mov = movieData.ITEMS[Math.floor(Math.random()*movieData.ITEMS.length)];
+                randomMovies.push(scrambledArray[i]);
             }
         }else{
             randomMovies = movieData.ITEMS;
         }
+        console.log(randomMovies);
         this.setState(prevState => ({
           recommendations: randomMovies
         }));
@@ -181,3 +206,4 @@ class App extends React.Component {
 }
 
 export default App;
+
