@@ -14,6 +14,10 @@ class RecommendList extends React.Component{
 
     
     handleMovieClick = (title,rating,synopsis,image) =>{
+        if(synopsis && synopsis.includes("&#39;")){
+            console.log("synopsis contains &39; !!" + title);
+            synopsis = synopsis.replace("&#39;"," ' ");
+        }
         console.log("Handle movie click in listJS" + title + rating)
         if(title){ //prevents passing 'undefined' values
         this.props.handleInfoDisplayFunction(title,rating,synopsis,image);

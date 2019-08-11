@@ -20,6 +20,7 @@ class App extends React.Component {
         dateEndFilter: '',
         ratingEndFilter: '10',
         typeFilter: 'Movie',
+        languageFilter: 'Any',
         recommendations: [],
         displayedTitle: '',
         displayedRating: '',
@@ -84,6 +85,13 @@ class App extends React.Component {
 
   }
 
+
+  changeLanguageFilter = (newFilter) =>{
+    this.setState({
+      languageFilter: newFilter
+    })
+  }
+
   scrambleArray = (array) =>{
     let j,x,i;
     for(i = array.length; i > 0; i--){
@@ -96,17 +104,21 @@ class App extends React.Component {
     return array;
   }
 
-  search = async(e) => {
+  search = async(type,e) => {
     e.preventDefault();
     
     console.log("Search activated");
     const REACT_APP_API_KEY =  process.env.REACT_APP_API_TOKEN;
 
-    try{                                                                                  
-  //  const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},${this.state.ratingEndFilter}-!0,10-!${this.state.genreFilter}-!${this.state.typeFilter}-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=78&st=adv&ob=Relevance&p=1&sa=and`;
-   const apiUrl =  `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},10-!${this.state.genreFilter}-!Any-!Any-!Any-!gt100-!{downloadable}&t=ns&cl=78&st=adv&ob=Relevance&p=1&sa=and`;
+    this.setState({
+      typeFilter: type
+    })
 
-      
+    try{   
+                  //https://unogs.com/?q=-!1981,2019-!0,5-!5,9-!0,10-!10673,10702,11804,11828,1192487,1365,1568,2125,2653,43040,43048,4344,46576,75418,76501,77232,788212,801362,852490,899,9584-!Series-!English-!Any-!I%20Don&cl=78&st=adv&ob=Relevance&p=1&ao=and
+   const apiUrl = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!${this.state.dateFilter},${this.state.dateEndFilter}-!0,5-!${this.state.ratingFilter},${this.state.ratingEndFilter}-!${this.state.genreFilter}-!${this.state.typeFilter}-!${this.state.languageFilter}-!Any-!I%20Don&cl=78&st=adv&ob=Relevance&p=1&ao=and` //gt100&t=ns&cl=78&st=adv&ob=Relevance&p=1&sa=and;
+//                   https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!2000,2019-!0,5-!6,10-!10673,10702,11804,11828,1192487,1365,1568,2125,2653,43040,43048,4344,46576,75418,76501,77232,788212,801362,852490,899,9584-!Movies-!Any-!Any-!I%20Don&cl=78&st=adv&ob=Relevance&p=1&ao=and
+      //             https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=-!2000,2019-!0,5-!8,10-!10673,10702,11804,11828,1192487,1365,1568,2125,2653,43040,43048,4344,46576,75418,76501,77232,788212,801362,852490,899,9584-!Movies-!Any-!Any-!I%20Don&cl=78&st=adv&ob=Relevance&p=1&ao=and
       console.log( "API url: " + apiUrl);
       // const apiResponse = await Axios.get(apiUrl)
       // .header("X-RAPIDAPI-KEY", REACT_APP_API_KEY); 
@@ -134,6 +146,12 @@ class App extends React.Component {
             }
         }else{
             randomMovies = movieData.ITEMS;
+        }
+
+        for(let i = 0; i < randomMovies.length; i++){
+          if(randomMovies[i] === undefined){ //removes undefined movie if there is one
+            randomMovies.splice(i,1);
+          }
         }
         console.log(randomMovies);
         this.setState(prevState => ({
@@ -190,7 +208,7 @@ class App extends React.Component {
 
         {reditectHolder}
 
-        <Route path='/home' render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>)} />
+        <Route path='/home' render={(routeProps) => (<Home {...routeProps}  genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter} languageChangeHandle={this.changeLanguageFilter} searchHandler={this.search}/>)} />
 
 
        <Route path='/info' render={() => (<InfoPage title={this.state.displayedTitle} rating={this.state.displayedRating} synopsis={this.state.displayedSynopsis} image={this.state.displayedImage} clearList = {this.handleClearList}/>)}/>

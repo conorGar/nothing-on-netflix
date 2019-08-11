@@ -65,6 +65,8 @@ option{
 .button-container{
     display: flex;
     flex-direction: row;
+    /* background-color: green; */
+    
 }
 
 .search-button {
@@ -88,13 +90,29 @@ option{
     text-align: center;
 }
 .search-button:hover {
-	background-color:#e6575f;
+    background-color:#e6575f;
+  
 }
 .search-button:active {
 	position:relative;
 	top:1px;
 }
 
+.search-button2{
+    text-decoration:none;
+    text-shadow:-1px 3px 0px #07090a;
+    text-align: center;
+}
+.search-button2:hover {
+    background-color:#e6575f;
+    cursor:pointer;
+    -moz-border-radius:8px;
+	-webkit-border-radius:8px;
+    border-radius:8px;
+    animation: fadeButton .3s ease-in-out;
+    -webkit-animation: fadeButton .3s ease-in-out;
+
+}
 h1{
     text-shadow: #000000 3px 5px 2px, 2px 2px 2px rgba(58,158,206,0);
 }
@@ -103,7 +121,11 @@ h1:hover{
     color:rgb(232, 45, 45);
 }
 
-
+label{
+    color:white;
+    font-weight: 700;
+    margin: 10px;
+}
 
 @media(max-width:420px){
 
@@ -142,4 +164,42 @@ h1:hover{
 
 }
 
+.button-container{
+    height: 100px;
+    width: 60vw;
+}
+
+.search-button {
+	-moz-box-shadow: 0px 10px 14px -7px #2d3233;
+	-webkit-box-shadow: 0px 10px 14px -7px #2d3233;
+	box-shadow: 0px 10px 14px -7px #2d3233;
+    background-color:blue;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+    width: 100%;
+    margin: 0 30px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:21px;
+	font-weight:bold;
+	padding:3px 32px;
+	text-decoration:none;
+    text-shadow:-1px 3px 0px #07090a;
+    text-align: center;
+}
+
+.find-movies-text{
+    opacity: 1;
+    font-size: 40px;
+    color: white;
+    z-index: 111;
+}
+
+}
+
+@keyframes fadeButton{
+    0%{opacity: 0}
+    100%{opacity:1}
 }

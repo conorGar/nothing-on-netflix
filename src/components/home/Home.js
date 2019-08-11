@@ -24,16 +24,20 @@ class Home extends React.Component{
     
       }
 
-      search = (e) => {
+      changeLanguageFilter = (newFilter) =>{
+        this.props.languageChangeHandle(newFilter);
+      }
+
+      search = (type,e) => {
           console.log("home search activate")
-          this.props.searchHandler(e);
+          this.props.searchHandler(type,e);
       }
 
       render(){
         return(
             <div className="home-container">
                 <FrontPage />
-                <SearchOptions genreChangeHandle={this.changeGenreFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>  
+                <SearchOptions genreChangeHandle={this.changeGenreFilter} languageChangeHandle={this.changeLanguageFilter} dateChangeHandle={this.changeDateFilter} rateChangeHandle={this.changeRateFilter}  searchHandler={this.search}/>  
             </div>
         )
       }
