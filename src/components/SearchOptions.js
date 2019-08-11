@@ -75,7 +75,7 @@ class SearchOptions extends React.Component{
                         <select value={this.state.operation}  onChange={this.onRateFilterChange} className="search-box">
                             <option value="add">considered to be:</option>
                             <option value="8.3">Among the greatest movies ever made.</option>
-                            <option value="8">Pretty good.</option>
+                            <option value="7.3">Pretty good.</option>
                             <option value="6">I'll settle for watchable.</option>
                             <option value="4">So bad it's good.</option>
                             <option value="1">So bad it's actually just bad.</option>

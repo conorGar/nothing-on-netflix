@@ -73,7 +73,7 @@ class App extends React.Component {
 
   changeRateFilter = (newFilter) =>{
     let rateEnd = 10;
-    if(newFilter < 5){
+    if(newFilter < 5 && newFilter > 0){
       rateEnd = parseInt(newFilter) +2;
     }else{
       rateEnd = 10;
