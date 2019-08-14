@@ -26,7 +26,7 @@ function FrontPage(props){
             <img alt="" id="headerImageFront2" src={FrontIMG}/>
             <img alt="" id="title" src={SiteTitle}/>
             <div className= "text">
-            <p>For us indecisive folks who need computers to tell us what we want.</p>
+            <p className="subtext">For us indecisive folks who need computers to tell us what we want.</p>
             </div>
            
 

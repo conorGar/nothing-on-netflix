@@ -1,5 +1,36 @@
 
 
+
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+    background-color: rgba(0,0,0,0);
+    padding: 10px 50px;
+    border-width: 0;
+    border-bottom-width: 2px;
+    font-size: 27px;
+    text-shadow: 1px 4px 1px #000000;
+    width:1;
+    color: white;
+    width:500px;
+    -webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both .5s;
+	        animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both .5s;
+}
+
+.menuClass{
+    transition: all .2s ease-in-out;
+    text-align: center;
+}
+
+.menuClass:hover{
+    background-color: #ef4343;
+    transform: scale(1.1);
+    font-weight: 800;
+}
+
+
+
 h2{
     color: white;
     z-index: 20;
@@ -129,6 +160,10 @@ label{
 
 @media(max-width:420px){
 
+    .dropdown{
+        
+        width:400px;
+    }
 .searchContainer{
   display: flex;
   flex-direction: column;
@@ -165,7 +200,7 @@ label{
 }
 
 .button-container{
-    height: 100px;
+    height: 120px;
     width: 60vw;
 }
 
@@ -173,28 +208,39 @@ label{
 	-moz-box-shadow: 0px 10px 14px -7px #2d3233;
 	-webkit-box-shadow: 0px 10px 14px -7px #2d3233;
 	box-shadow: 0px 10px 14px -7px #2d3233;
-    background-color:blue;
+    /* background-color:blue; */
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
 	border-radius:8px;
     width: 100%;
     margin: 0 30px;
+    margin-top: 30px;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
 	font-size:21px;
 	font-weight:bold;
-	padding:3px 32px;
+	padding:0px 32px;
 	text-decoration:none;
     text-shadow:-1px 3px 0px #07090a;
     text-align: center;
 }
 
+.languages-checkbox{
+    margin-top: 30px;
+}
+
 .find-movies-text{
     opacity: 1;
-    font-size: 40px;
+    font-size: 20px;
     color: white;
     z-index: 111;
+    /* width: 300px; */
+    /* height: 100px; */
+}
+
+h2{
+    font-size: 30px;
 }
 
 }
@@ -203,3 +249,31 @@ label{
     0%{opacity: 0}
     100%{opacity:1}
 }
+
+@-webkit-keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+
+  

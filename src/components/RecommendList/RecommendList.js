@@ -14,6 +14,10 @@ class RecommendList extends React.Component{
 
     
     handleMovieClick = (title,rating,synopsis,image) =>{
+
+        if(title && title.includes("&#39;")){
+            title = title.replace("&#39;"," ' ");
+        }
         if(synopsis && synopsis.includes("&#39;")){
             console.log("synopsis contains &39; !!" + title);
             synopsis = synopsis.replace("&#39;"," ' ");
